@@ -1,5 +1,7 @@
 # stringio: convert strings to Node.js streams and vice versa
 
+Overview (see line A and line B):
+
 ```js
 import * as assert from 'assert';
 import { StringStream, readableToString } from 'stringio';
