@@ -1,6 +1,12 @@
 # stringio: convert strings to Node.js streams and vice versa
 
-Overview (see line A and line B):
+```
+npm install @rauschma/stringio
+```
+
+## Overview
+
+See line A and line B:
 
 ```js
 import * as assert from 'assert';
