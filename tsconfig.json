@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es2015",
+      "lib": [
+        "es2016",
+        "es2017",
+      ],
+        "sourceMap": true,
+      "outDir": "dist",
+      "strict": true,
+      "declaration": true
+  },
+  "include": [
+      "ts/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "dist"
+  ]
+}
