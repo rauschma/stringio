@@ -43,6 +43,7 @@ Used in line B.
 ## Related npm packages
 
 * [`string-to-stream`](https://github.com/feross/string-to-stream): only converts in one direction, pre-ES6 code (which is a pro and a con).
+* [`get-stream`](https://github.com/sindresorhus/get-stream): Get a stream as a string, buffer, or array.
 
 ## Acknowledgements
 
