@@ -32,3 +32,38 @@ export function readableToString(readable: Readable, encoding='utf8'): Promise<s
     });
   });
 }
+
+/**
+ * Parameter: async iterable of chunks (strings)
+ * Result: async iterable of lines (incl. newlines)
+ */
+export async function* chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String> {
+  if (! Symbol.asyncIterator) {
+    throw new Error('Current JavaScript engine does not support asynchronous iterables');
+  }
+  if (! (Symbol.asyncIterator in chunks)) {
+    throw new Error('Parameter is not an asynchronous iterable');
+  }
+  let previous = '';
+  for await (const chunk of chunks) {
+    previous += chunk;
+    let eolIndex;
+    while ((eolIndex = previous.indexOf('\n')) >= 0) {
+      // line includes the EOL
+      const line = previous.slice(0, eolIndex+1);
+      yield line;
+      previous = previous.slice(eolIndex+1);
+    }
+  }
+  if (previous.length > 0) {
+    yield previous;
+  }
+}
+
+export async function asyncIterableToArray<T>(asyncIterable: AsyncIterable<T>): Promise<Array<T>> {
+  const result = new Array<T>();
+  for await (const elem of asyncIterable) {
+    result.push(elem);
+  }
+  return result;
+}

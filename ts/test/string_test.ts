@@ -11,19 +11,8 @@ test('From string to stream to string', async () => {
 });
 
 test('File stream stream to string', async () => {
-  const PATH = path.resolve(__dirname, '../../ts/test/index_test_file.txt');
+  const PATH = path.resolve(__dirname, '../../ts/test/test_file.txt');
   const stream = fs.createReadStream(PATH);
   const str = await readableToString(stream);
-  assert.strictEqual(str.trim(), 'This is a test!');
+  assert.strictEqual(str, 'First line.\nSecond line.\n');
 });
-
-/*
-async function mainTest() {
-  const str = await readableToString();
-  console.log('STR: '+str);
-}
-async function mainStdin() {
-  const str = await readableToString(process.stdin);
-  console.log('STR: '+str);
-}
-*/

@@ -10,7 +10,7 @@ See line A and line B:
 
 ```js
 import * as assert from 'assert';
-import { StringStream, readableToString } from 'stringio';
+import { StringStream, readableToString } from '@rauschma/stringio';
 
 test('From string to stream to string', async () => {
   const str = 'Hello!\nHow are you?\n';
@@ -20,7 +20,7 @@ test('From string to stream to string', async () => {
 });
 ```
 
-## `stringio.StringStream`: from string to stream
+## `StringStream`: from string to stream
 
 ```typescript
 declare class StringStream extends Readable {
@@ -30,7 +30,7 @@ declare class StringStream extends Readable {
 
 Used in line A.
 
-## `stringio.readableToString`: from stream to string
+## `readableToString`: from stream to string
 
 ```typescript
 declare function readableToString(readable: Readable, encoding?: string): Promise<string>;
@@ -39,6 +39,36 @@ declare function readableToString(readable: Readable, encoding?: string): Promis
 Default encoding is `'utf-8'`.
 
 Used in line B.
+
+### Reading stdin into a string
+
+```typescript
+async function readStdin() {
+  const str = await readableToString(process.stdin);
+  console.log('STR: '+str);
+}
+```
+
+## `chunksToLinesAsync`: async iterable over chunks to async iterable over lines
+
+```typescript
+declare function chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String>;
+```
+
+Example (starting with Node.js v.10, readable streams are asynchronous iterables):
+
+```typescript
+import * as fs from 'fs';
+import { chunksToLinesAsync } from '@rauschma/stringio';
+
+async function main() {
+  const stream = fs.createReadStream(process.argv[2]);
+  for await (const line of chunksToLinesAsync(stream)) {
+    console.log(line);
+  }
+}
+main();
+```
 
 ## Related npm packages
 
