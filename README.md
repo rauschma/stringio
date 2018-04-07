@@ -4,7 +4,7 @@
 npm install @rauschma/stringio
 ```
 
-## Overview
+## Strings ↔︎ streams
 
 See line A and line B:
 
@@ -20,7 +20,7 @@ test('From string to stream to string', async () => {
 });
 ```
 
-## `StringStream`: from string to stream
+### `StringStream`: from string to stream
 
 ```typescript
 declare class StringStream extends Readable {
@@ -30,7 +30,7 @@ declare class StringStream extends Readable {
 
 Used in line A.
 
-## `readableToString`: from stream to string
+### `readableToString`: from stream to string
 
 ```typescript
 declare function readableToString(readable: Readable, encoding?: string): Promise<string>;
@@ -40,7 +40,7 @@ Default encoding is `'utf-8'`.
 
 Used in line B.
 
-### Reading stdin into a string
+#### Reading stdin into a string
 
 ```typescript
 async function readStdin() {
@@ -49,7 +49,16 @@ async function readStdin() {
 }
 ```
 
-## `chunksToLinesAsync`: async iterable over chunks to async iterable over lines
+### Related npm packages
+
+* [`string-to-stream`](https://github.com/feross/string-to-stream): Convert a string into a stream.
+* [`get-stream`](https://github.com/sindresorhus/get-stream): Get a stream as a string, buffer, or array.
+
+## Asynchronous iterables
+
+Background: http://2ality.com/2018/04/async-iter-nodejs.html
+
+### `chunksToLinesAsync`: async iterable over chunks to async iterable over lines
 
 ```typescript
 declare function chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String>;
@@ -57,9 +66,9 @@ declare function chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterabl
 
 Example (starting with Node.js v.10, readable streams are asynchronous iterables):
 
-```typescript
-import * as fs from 'fs';
-import { chunksToLinesAsync } from '@rauschma/stringio';
+```js
+const fs = require('fs');
+const {chunksToLinesAsync} = require('@rauschma/stringio');
 
 async function main() {
   const stream = fs.createReadStream(process.argv[2]);
@@ -70,11 +79,6 @@ async function main() {
 main();
 ```
 
-## Related npm packages
-
-* [`string-to-stream`](https://github.com/feross/string-to-stream): Convert a string into a stream.
-* [`get-stream`](https://github.com/sindresorhus/get-stream): Get a stream as a string, buffer, or array.
-
 ## Acknowledgements
 
-* Partially inspired by: https://github.com/feross/string-to-stream/blob/master/index.js
+* `StringStream` is inspired by: https://github.com/feross/string-to-stream/blob/master/index.js
