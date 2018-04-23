@@ -74,8 +74,9 @@ const {chunksToLinesAsync} = require('@rauschma/stringio');
 
 async function main() {
   const stream = fs.createReadStream(process.argv[2]);
+    // Works, too: const stream = process.stdin;
   for await (const line of chunksToLinesAsync(stream)) {
-    console.log(line);
+    console.log(chomp(line));
   }
 }
 main();
