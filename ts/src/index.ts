@@ -67,3 +67,10 @@ export async function asyncIterableToArray<T>(asyncIterable: AsyncIterable<T>): 
   }
   return result;
 }
+
+const RE_NEWLINE = /\r?\n$/u;
+export function chomp(line: string): string {
+  const match = RE_NEWLINE.exec(line);
+  if (! match) return line;
+  return line.slice(0, match.index);
+}

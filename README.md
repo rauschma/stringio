@@ -64,6 +64,8 @@ Background: http://2ality.com/2018/04/async-iter-nodejs.html
 declare function chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String>;
 ```
 
+Each line includes the line break at the end (if any – the last line may not have one).
+
 Example (starting with Node.js v.10, readable streams are asynchronous iterables):
 
 ```js
@@ -77,6 +79,14 @@ async function main() {
   }
 }
 main();
+```
+
+## Simple helper function
+
+### `chomp`: remove a line break at the end of a line
+
+```typescript
+declare function chomp(line: string): string;
 ```
 
 ## Acknowledgements
