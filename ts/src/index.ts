@@ -37,7 +37,7 @@ export function readableToString(readable: Readable, encoding='utf8'): Promise<s
  * Parameter: async iterable of chunks (strings)
  * Result: async iterable of lines (incl. newlines)
  */
-export async function* chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String> {
+export async function* chunksToLinesAsync(chunks: AsyncIterable<string>): AsyncIterable<string> {
   if (! Symbol.asyncIterator) {
     throw new Error('Current JavaScript engine does not support asynchronous iterables');
   }

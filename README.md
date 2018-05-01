@@ -61,7 +61,7 @@ Background: http://2ality.com/2018/04/async-iter-nodejs.html
 ### `chunksToLinesAsync`: async iterable over chunks to async iterable over lines
 
 ```typescript
-declare function chunksToLinesAsync(chunks: AsyncIterable<String>): AsyncIterable<String>;
+declare function chunksToLinesAsync(chunks: AsyncIterable<string>): AsyncIterable<string>;
 ```
 
 Each line includes the line break at the end (if any – the last line may not have one).
