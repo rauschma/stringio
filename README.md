@@ -3,6 +3,7 @@
 ```
 npm install @rauschma/stringio
 ```
+<!-- ########################################################## -->
 
 ## Strings ↔︎ streams
 
@@ -54,6 +55,8 @@ async function readStdin() {
 * [`string-to-stream`](https://github.com/feross/string-to-stream): Convert a string into a stream.
 * [`get-stream`](https://github.com/sindresorhus/get-stream): Get a stream as a string, buffer, or array.
 
+<!-- ########################################################## -->
+
 ## Asynchronous iterables
 
 Background: http://2ality.com/2018/04/async-iter-nodejs.html
@@ -82,7 +85,33 @@ async function main() {
 main();
 ```
 
-## Simple helper function
+<!-- ########################################################## -->
+
+## Promisified writing to streams
+
+Usage:
+
+```js
+await streamWrite(someStream, 'abc');
+await streamWrite(someStream, 'def');
+await streamEnd(someStream);
+```
+
+```typescript
+declare function streamWrite(
+  stream: Writable,
+  chunk: string | Buffer | Uint8Array,
+  encoding = 'utf8')
+  : Promise<void>;
+
+declare function streamEnd(
+  stream: Writable)
+  : Promise<void>;
+```
+
+<!-- ########################################################## -->
+
+## String helper function
 
 ### `chomp`: remove a line break at the end of a line
 

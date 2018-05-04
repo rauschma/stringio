@@ -17,7 +17,7 @@
   },
   "//": "@types/node being a normal dependency is not ideal, but it ensures it’s installed automatically",
   "dependencies": {
-    "@types/node": "^9.4.7"
+    "@types/node": "^10.0.3"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.48",
