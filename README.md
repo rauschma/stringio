@@ -59,8 +59,6 @@ async function readStdin() {
 
 ## Asynchronous iterables
 
-Background: http://2ality.com/2018/04/async-iter-nodejs.html
-
 ### `chunksToLinesAsync`: async iterable over chunks to async iterable over lines
 
 ```typescript
@@ -89,14 +87,6 @@ main();
 
 ## Promisified writing to streams
 
-Usage:
-
-```js
-await streamWrite(someStream, 'abc');
-await streamWrite(someStream, 'def');
-await streamEnd(someStream);
-```
-
 ```typescript
 declare function streamWrite(
   stream: Writable,
@@ -109,6 +99,31 @@ declare function streamEnd(
   : Promise<void>;
 ```
 
+Usage:
+
+```js
+await streamWrite(someStream, 'abc');
+await streamWrite(someStream, 'def');
+await streamEnd(someStream);
+```
+
+<!-- ########################################################## -->
+
+## `onExit(childProcess)`: wait until a child process is finished
+
+```ts
+export declare function onExit(childProcess: ChildProcess): Promise<void>;
+```
+
+Usage:
+
+```js
+const childProcess = child_process.spawn(···);
+await onExit(childProcess);
+```
+
+Errors emitted by `childProcess` or a non-zero exit code reject the Promise returned by `onExit()`.
+
 <!-- ########################################################## -->
 
 ## String helper function
@@ -118,6 +133,13 @@ declare function streamEnd(
 ```typescript
 declare function chomp(line: string): string;
 ```
+
+## Further reading
+
+The following 2ality blog posts use `stringio`:
+
+* [Reading streams via async iteration in Node.js](http://2ality.com/2018/04/async-iter-nodejs.html)
+* [Working with stdout and stdin of a child process in Node.js](http://2ality.com/2018/05/child-process-streams.html)
 
 ## Acknowledgements
 

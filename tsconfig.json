@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "target": "es2018",
-      "lib": [
-          "esnext",
-      ],
-        "sourceMap": true,
-      "outDir": "dist",
-      "strict": true,
-      "declaration": true
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2018",
+    "lib": [
+      "esnext",
+    ],
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "declaration": true
   },
   "include": [
-      "ts/**/*"
+    "ts/**/*"
   ],
   "exclude": [
-      "node_modules",
-      "dist"
+    "node_modules",
+    "dist"
   ]
 }

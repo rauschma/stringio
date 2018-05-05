@@ -9,6 +9,7 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "scripts": {
+    "clean": "rm -rf dist/*",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "mocha --ui qunit",
