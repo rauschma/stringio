@@ -99,6 +99,10 @@ export function chomp(line: string): string {
  * @see https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_writable_write_chunk_encoding_callback
  */
 export function streamWrite(stream: Writable, chunk: string|Buffer|Uint8Array, encoding = 'utf8'): Promise<void> {
+  // Get notified via callback when it’s “safe” to write again.
+  // The alternatives are:
+  // – 'drain' event waits until buffering is below “high water mark”
+  // – callback waits until written content is unbuffered
   return streamPromiseHelper(stream,
     callback => stream.write(chunk, encoding, callback));
 }
